@@ -48,7 +48,6 @@ app.use('/users', userRoute);
 app.use('/auth', authRoute);
 
 app.get('/accesstoken', (req, res) => {
-	console.log("cookie",req.cookies);
 	return res.json({token: req.cookies['jwt-token']});
 });
 
