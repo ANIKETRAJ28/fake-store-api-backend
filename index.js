@@ -59,12 +59,12 @@ app.get('/accesstoken', (req, res) => {
 	return res.json({token: req.cookies['jwt-token']});
 });
 
-app.options('/', (req, res) => {
-	res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.sendStatus(204);
-});
+// app.options('/', (req, res) => {
+// 	res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//   res.sendStatus(204);
+// });
 
 app.get('/logout', (req, res) => {
 	res.clearCookie('jwt-token');
