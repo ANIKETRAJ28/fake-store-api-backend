@@ -1,7 +1,7 @@
 //initializes
 const mongoose = require('mongoose');
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
@@ -24,12 +24,20 @@ const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 
 //middleware
-const corsOptions = {
-	origin: 'http://localhost:5173', // Replace with your React app's origin
-	credentials: true, // Enable credentials (cookies) in cross-origin requests
-};
+// const corsOptions = {
+// 	origin: 'http://localhost:5173', // Replace with your React app's origin
+// 	credentials: true, // Enable credentials (cookies) in cross-origin requests
+// };
   
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, x-access-token");
+    next();
+});
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: true }));
